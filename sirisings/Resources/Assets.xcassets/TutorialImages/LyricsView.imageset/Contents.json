@@ -1,17 +1,26 @@
 {
   "images" : [
     {
-      "filename" : "simulator_screenshot_C65943FE-81DE-4188-9F88-DAB8B0A0770D.png",
-      "idiom" : "universal",
+      "filename" : "Simulator Screenshot - 14PM(16.4) - 2023-07-14 at 18.28.09.png",
+      "idiom" : "iphone",
       "scale" : "1x"
     },
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
       "scale" : "2x"
     },
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
       "scale" : "3x"
+    },
+    {
+      "filename" : "Simulator Screenshot - 12.9G6(16.4) - 2023-07-14 at 18.20.57.png",
+      "idiom" : "ipad",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "ipad",
+      "scale" : "2x"
     }
   ],
   "info" : {

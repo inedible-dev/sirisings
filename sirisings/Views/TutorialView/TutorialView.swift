@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct TutorialView: View {
     
     @Environment(\.dismiss) var dismissView
@@ -14,6 +15,8 @@ struct TutorialView: View {
     enum Views {
         case preButton, playButton, houseButton, saveButton, clearButton, waveButton, upButton
     }
+    
+    
     
     private let contents: [(title: String, description: String, iconName: String?, imageName: String?, noShadow: Bool, view: Views?)] = [
         (
@@ -120,19 +123,55 @@ struct TutorialView: View {
             false,
             .upButton
         ),
+        (
+            "Adjust the Volume",
+            "Press the Edit Button and navigate to the Volume tab to configure",
+            nil,
+            "Volume",
+            false,
+            nil
+        ),
+        (
+            "Adjust the Pitch",
+            "Press the Edit Button and navigate to the Pitch tab to configure",
+            nil,
+            "Pitch",
+            false,
+            nil
+        ),
+        (
+            "Adjust the Rate",
+            "Press the Edit Button and navigate to the Rate tab to configure",
+            nil,
+            "Rate",
+            false,
+            nil
+        ),
+        (
+            "Adjust the Predelay",
+            "Press the Edit Button and navigate to the Predelay tab to configure",
+            nil,
+            "PreDelay",
+            false,
+            nil
+        ),
     ]
+    
+    func getButtonSize() -> CGFloat {
+        return isIpad ? 50 : 30
+    }
     
     var body: some View {
         let isIpad = UIDevice.current.userInterfaceIdiom == .pad
         VStack {
             NavbarView(rightAction: { dismissView() })
             TabView {
-                ForEach(contents.indices, id: \.self) { index in
+                ForEach(isIpad ? contents.prefix(12).indices : contents.indices, id: \.self) { index in
                     ScrollViewIfNeeded {
                         VStack(alignment: .center, spacing: 10) {
                             VStack {
                                 if contents[index].imageName != nil {
-                                    Image(contents[index].imageName!)
+                                    Image("\(contents[index].imageName!)")
                                         .resizable()
                                         .scaledToFit()
                                         .cornerRadius(8)
@@ -167,18 +206,19 @@ struct TutorialView: View {
                                                 Image(systemName: "arrow.up")
                                             }.buttonStyle(CircleButtonStyle(color: "PreOrange", isPlaying: false))
                                         case .houseButton:
-                                            ImageButton(systemName: "house.fill", size: 50) {}
+                                            ImageButton(systemName: "house.fill", size: getButtonSize()) {}
                                         case .saveButton:
-                                            ImageButton(systemName: "square.and.arrow.down.fill", size: 50) {}
+                                            ImageButton(systemName: "square.and.arrow.down.fill", size: getButtonSize()) {}
                                         case .clearButton:
-                                            ImageButton(systemName: "xmark.app.fill", size: 50) {}
+                                            ImageButton(systemName: "xmark.app.fill", size: getButtonSize()) {}
                                         case .waveButton:
-                                            ImageButton(systemName: "waveform.circle.fill", size: 50) {}
+                                            ImageButton(systemName: "waveform.circle.fill", size: getButtonSize()) {}
                                         }
                                     }
                                 }.padding(.vertical, 24)
                             }
                         }.multilineTextAlignment(.center)
+                            .padding(.bottom, 40)
                     }
                 }
             }
